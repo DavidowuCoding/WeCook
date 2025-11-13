@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Preferences</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        ::-webkit-scrollbar { display: none;}
+        * { font-family: 'Inter', sans-serif; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10B981',
+                        secondary: '#059669',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+
+<div id="mobile-app" class="max-w-sm mx-auto bg-white min-h-screen">
+    
+    <header id="header" class="bg-white shadow-sm px-4 py-3 flex items-center justify-between">
+        <button class="p-2 -ml-2">
+            <i class="fa-solid fa-arrow-left text-gray-600 text-lg"></i>
+        </button>
+        <h1 class="text-lg font-semibold text-gray-900">Ernährungseinstellungen</h1>
+        <button class="p-2 -mr-2">
+            <i class="fa-solid fa-bookmark text-gray-400 text-lg"></i>
+        </button>
+    </header>
+
+    <div id="recipe-header" class="px-4 py-4 bg-gradient-to-r from-primary to-secondary">
+        <div class="flex items-center space-x-3 mb-3">
+            <div class="w-16 h-16 bg-white rounded-xl overflow-hidden">
+                <img class="w-full h-full object-cover" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/c4adc16d3b-a1396d3397c939c0d561.png" alt="healthy quinoa bowl with vegetables, vibrant colors, food photography" />
+            </div>
+            <div class="flex-1">
+                <h2 class="text-white font-semibold text-lg">Quinoa Power Bowl</h2>
+                <p class="text-green-100 text-sm">Gesund & Nahrhaft</p>
+            </div>
+        </div>
+        
+        <div id="portion-control" class="bg-white/10 rounded-xl p-3">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-white text-sm font-medium">Portionen</span>
+                <div class="flex items-center space-x-3">
+                    <button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-minus text-white text-xs"></i>
+                    </button>
+                    <span class="text-white font-semibold text-lg min-w-8 text-center">2</span>
+                    <button class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-plus text-white text-xs"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="text-green-100 text-xs">Zutaten werden automatisch angepasst</div>
+        </div>
+    </div>
+
+    <div id="dietary-preferences" class="px-4 py-4">
+        <h3 class="text-gray-900 font-semibold mb-3">Ernährungsvorlieben</h3>
+        <div class="space-y-2">
+            <div class="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-xl">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-leaf text-green-600 text-sm"></i>
+                    </div>
+                    <span class="text-gray-900 font-medium">Vegan</span>
+                </div>
+                <div class="w-5 h-5 bg-green-500 rounded border-2 border-green-500 flex items-center justify-center">
+                    <i class="fa-solid fa-check text-white text-xs"></i>
+                </div>
+            </div>
+            
+            <div class="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-xl">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-wheat-awn text-amber-600 text-sm"></i>
+                    </div>
+                    <span class="text-gray-900 font-medium">Glutenfrei</span>
+                </div>
+                <div class="w-5 h-5 bg-white border-2 border-gray-300 rounded"></div>
+            </div>
+            
+            <div class="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-xl">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-droplet text-blue-600 text-sm"></i>
+                    </div>
+                    <span class="text-gray-900 font-medium">Laktosefrei</span>
+                </div>
+                <div class="w-5 h-5 bg-white border-2 border-gray-300 rounded"></div>
+            </div>
+            
+            <div class="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-xl">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-ban text-red-600 text-sm"></i>
+                    </div>
+                    <span class="text-gray-900 font-medium">Nussfrei</span>
+                </div>
+                <div class="w-5 h-5 bg-white border-2 border-gray-300 rounded"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="nutrition-info" class="px-4 py-4">
+        <h3 class="text-gray-900 font-semibold mb-3">Nährwerte pro Portion</h3>
+        
+        <div class="bg-gradient-to-r from-primary to-secondary rounded-xl p-4 mb-4">
+            <div class="text-center">
+                <div class="text-white text-3xl font-bold">485</div>
+                <div class="text-green-100 text-sm">Kalorien</div>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3 mb-4">
+            <div class="bg-blue-50 rounded-xl p-3 text-center">
+                <div class="text-blue-600 text-xl font-semibold">18g</div>
+                <div class="text-blue-800 text-sm font-medium">Protein</div>
+            </div>
+            <div class="bg-orange-50 rounded-xl p-3 text-center">
+                <div class="text-orange-600 text-xl font-semibold">65g</div>
+                <div class="text-orange-800 text-sm font-medium">Kohlenhydrate</div>
+            </div>
+            <div class="bg-purple-50 rounded-xl p-3 text-center">
+                <div class="text-purple-600 text-xl font-semibold">14g</div>
+                <div class="text-purple-800 text-sm font-medium">Fett</div>
+            </div>
+            <div class="bg-green-50 rounded-xl p-3 text-center">
+                <div class="text-green-600 text-xl font-semibold">12g</div>
+                <div class="text-green-800 text-sm font-medium">Ballaststoffe</div>
+            </div>
+        </div>
+        
+        <div class="space-y-2">
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 text-sm">Vitamin C</span>
+                <span class="text-gray-900 font-medium text-sm">45mg (75%)</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 text-sm">Eisen</span>
+                <span class="text-gray-900 font-medium text-sm">3.2mg (18%)</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-600 text-sm">Magnesium</span>
+                <span class="text-gray-900 font-medium text-sm">95mg (25%)</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="allergen-info" class="px-4 py-4 bg-amber-50 mx-4 rounded-xl mb-4">
+        <div class="flex items-start space-x-3">
+            <div class="w-6 h-6 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i class="fa-solid fa-exclamation-triangle text-amber-600 text-xs"></i>
+            </div>
+            <div>
+                <h4 class="text-amber-800 font-medium text-sm mb-1">Allergenhinweis</h4>
+                <p class="text-amber-700 text-xs">Dieses Rezept enthält Sesam. Bei Allergien bitte alternative Zutaten verwenden.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="action-buttons" class="px-4 pb-6">
+        <button class="w-full bg-primary text-white font-semibold py-4 rounded-xl mb-3 flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-utensils"></i>
+            <span>Rezept starten</span>
+        </button>
+        
+        <div class="grid grid-cols-2 gap-3">
+            <button class="bg-gray-100 text-gray-700 font-medium py-3 rounded-xl flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-share-alt"></i>
+                <span>Teilen</span>
+            </button>
+            <button class="bg-gray-100 text-gray-700 font-medium py-3 rounded-xl flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-cart-plus"></i>
+                <span>Einkaufsliste</span>
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const portionControls = document.querySelectorAll('#portion-control button');
+    const portionDisplay = document.querySelector('#portion-control span:nth-child(2)');
+    let currentPortions = 2;
+    
+    portionControls.forEach((button, index) => {
+        button.addEventListener('click', function() {
+            if (index === 0 && currentPortions > 1) {
+                currentPortions--;
+            } else if (index === 1 && currentPortions < 8) {
+                currentPortions++;
+            }
+            portionDisplay.textContent = currentPortions;
+            updateNutritionValues();
+        });
+    });
+    
+    function updateNutritionValues() {
+        const baseCalories = 485;
+        const baseProtein = 18;
+        const baseCarbs = 65;
+        const baseFat = 14;
+        const baseFiber = 12;
+        
+        const multiplier = currentPortions / 2;
+        
+        document.querySelector('#nutrition-info .text-3xl').textContent = Math.round(baseCalories * multiplier);
+        document.querySelectorAll('#nutrition-info .grid .text-xl')[0].textContent = Math.round(baseProtein * multiplier) + 'g';
+        document.querySelectorAll('#nutrition-info .grid .text-xl')[1].textContent = Math.round(baseCarbs * multiplier) + 'g';
+        document.querySelectorAll('#nutrition-info .grid .text-xl')[2].textContent = Math.round(baseFat * multiplier) + 'g';
+        document.querySelectorAll('#nutrition-info .grid .text-xl')[3].textContent = Math.round(baseFiber * multiplier) + 'g';
+    }
+    
+    const dietaryOptions = document.querySelectorAll('#dietary-preferences .flex');
+    dietaryOptions.forEach(option => {
+        const checkbox = option.querySelector('.w-5.h-5:last-child');
+        option.addEventListener('click', function() {
+            if (checkbox.classList.contains('bg-white')) {
+                checkbox.classList.remove('bg-white', 'border-gray-300');
+                checkbox.classList.add('bg-green-500', 'border-green-500');
+                checkbox.innerHTML = '<i class="fa-solid fa-check text-white text-xs"></i>';
+                option.classList.remove('bg-gray-50', 'border-gray-200');
+                option.classList.add('bg-green-50', 'border-green-200');
+            } else if (!option.classList.contains('bg-green-50')) {
+                checkbox.classList.remove('bg-green-500', 'border-green-500');
+                checkbox.classList.add('bg-white', 'border-gray-300');
+                checkbox.innerHTML = '';
+                option.classList.remove('bg-green-50', 'border-green-200');
+                option.classList.add('bg-gray-50', 'border-gray-200');
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>
