@@ -3,13 +3,14 @@ import {
   Heart, Sparkles, ShoppingCart, Gamepad2, ChefHat, Apple, Smartphone, 
   Plus, Minus, 
   CheckCircle, ArrowRight, Brain, UtensilsCrossed, Flame, Play, Star, Quote, 
-  Mail, Shield, Lock, Award, TrendingUp, Clock, Zap, Users
+  Mail, Shield, Lock, Award, TrendingUp, Clock, Zap, Users, Menu, X
 } from 'lucide-react';
 
 export default function WeCookLanding() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [email, setEmail] = useState('');
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const stockPhotos = [
     `${import.meta.env.BASE_URL}stock_photos/medium-shot-couple-preparing-food-together.jpg`,
@@ -131,12 +132,12 @@ export default function WeCookLanding() {
     <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-gray-100 z-50 shadow-sm">
-        <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="bg-gradient-to-br from-orange-500 to-red-500 p-2.5 rounded-xl shadow-md">
-              <ChefHat className="w-6 h-6 text-white" />
+        <nav className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="bg-gradient-to-br from-orange-500 to-red-500 p-2 sm:p-2.5 rounded-xl shadow-md">
+              <ChefHat className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+            <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
               WeCook
             </span>
           </div>
@@ -148,11 +149,32 @@ export default function WeCookLanding() {
               Jetzt starten
             </button>
           </div>
+          {/* Mobile Menu Button */}
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-gray-700 hover:text-orange-600 transition-colors"
+            aria-label="Menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </nav>
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-100">
+            <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+              <button onClick={() => { scrollToSection('features'); setMobileMenuOpen(false); }} className="text-left text-gray-700 hover:text-orange-600 transition-colors font-medium py-2">Features</button>
+              <button onClick={() => { scrollToSection('how-it-works'); setMobileMenuOpen(false); }} className="text-left text-gray-700 hover:text-orange-600 transition-colors font-medium py-2">So funktioniert's</button>
+              <button onClick={() => { scrollToSection('pricing'); setMobileMenuOpen(false); }} className="text-left text-gray-700 hover:text-orange-600 transition-colors font-medium py-2">Preise</button>
+              <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all text-center">
+                Jetzt starten
+              </button>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Hero Section - Large Photo Background */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20 pb-12 sm:pb-0">
         {/* Large Photo Background */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -164,16 +186,16 @@ export default function WeCookLanding() {
         </div>
 
         {/* Content Overlay */}
-        <div className="container mx-auto max-w-7xl px-6 relative z-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 relative z-20">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: Text Content */}
             <div className="text-left text-white">
-              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6">
-                <Flame className="w-4 h-4 text-orange-300" />
-                <span className="text-sm text-white font-medium">Creative Pre-Incubator 2025</span>
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-4 sm:mb-6">
+                <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-300" />
+                <span className="text-xs sm:text-sm text-white font-medium">Creative Pre-Incubator 2025</span>
               </div>
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
                 <span className="text-white">Gemeinsam</span>
                 <br />
                 <span className="bg-gradient-to-r from-orange-300 to-red-300 bg-clip-text text-transparent">
@@ -183,41 +205,41 @@ export default function WeCookLanding() {
                 <span className="text-white">Einfach.</span>
               </h1>
               
-              <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-6 sm:mb-8 leading-relaxed">
                 Transformiere gemeinsames Kochen in ein reibungsloses, unterhaltsames Erlebnis. 
                 <span className="text-orange-300 font-semibold"> KI-gestützte Aufgabenverteilung</span> und 
                 <span className="text-orange-300 font-semibold"> synchronisierte Workflows</span> für perfekte Koordination.
               </p>
 
               {/* Quick Benefits */}
-              <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="grid grid-cols-2 gap-2 sm:gap-4 mb-6 sm:mb-8">
                 {benefits.map((benefit, i) => (
-                  <div key={i} className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
-                    <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-lg p-2">
-                      <benefit.icon className="w-5 h-5 text-white" />
+                  <div key={i} className="flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-2 sm:p-3 border border-white/20">
+                    <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-lg p-1.5 sm:p-2 flex-shrink-0">
+                      <benefit.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                     </div>
-                    <div>
-                      <div className="font-semibold text-sm text-white">{benefit.title}</div>
-                      <div className="text-xs text-white/80">{benefit.desc}</div>
+                    <div className="min-w-0">
+                      <div className="font-semibold text-xs sm:text-sm text-white truncate">{benefit.title}</div>
+                      <div className="text-[10px] sm:text-xs text-white/80 line-clamp-2">{benefit.desc}</div>
                     </div>
                   </div>
                 ))}
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-white text-orange-600 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-2 shadow-lg">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <button className="bg-white text-orange-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-2 shadow-lg">
                   Kostenlos starten
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
-                <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-sm">
-                  <Play className="w-5 h-5" />
+                <button className="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-sm">
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5" />
                   Demo ansehen
                 </button>
               </div>
             </div>
 
-            {/* Right: Floating App Mockup Overlay */}
-            <div className="relative z-20">
+            {/* Right: Floating App Mockup Overlay - Hidden on mobile */}
+            <div className="relative z-20 hidden lg:block">
               <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/50">
                 <div className="flex items-center justify-center gap-4">
                   {/* Phone 1 - Alex */}
@@ -474,51 +496,51 @@ export default function WeCookLanding() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center bg-white/20 backdrop-blur-sm">
-            <div className="w-1 h-3 bg-white rounded-full mt-2"></div>
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce hidden sm:block">
+          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/50 rounded-full flex justify-center bg-white/20 backdrop-blur-sm">
+            <div className="w-1 h-2 sm:h-3 bg-white rounded-full mt-1.5 sm:mt-2"></div>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 px-6 bg-gradient-to-r from-orange-50 to-red-50">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-r from-orange-50 to-red-50">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-orange-600 mb-2">2.2M+</div>
-              <div className="text-gray-600">Haushalte in Österreich</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-600 mb-1 sm:mb-2">2.2M+</div>
+              <div className="text-xs sm:text-sm text-gray-600">Haushalte in Österreich</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-red-600 mb-2">100+</div>
-              <div className="text-gray-600">Rezepte verfügbar</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-600 mb-1 sm:mb-2">100+</div>
+              <div className="text-xs sm:text-sm text-gray-600">Rezepte verfügbar</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-amber-600 mb-2">4.9★</div>
-              <div className="text-gray-600">Nutzerbewertung</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-600 mb-1 sm:mb-2">4.9★</div>
+              <div className="text-xs sm:text-sm text-gray-600">Nutzerbewertung</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-orange-600 mb-2">50%</div>
-              <div className="text-gray-600">Zeitersparnis</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-600 mb-1 sm:mb-2">50%</div>
+              <div className="text-xs sm:text-sm text-gray-600">Zeitersparnis</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Recipe Categories */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Rezepte für jeden Geschmack</h2>
-            <p className="text-xl text-gray-600">Über 100 Rezepte in verschiedenen Kategorien</p>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-gray-900">Rezepte für jeden Geschmack</h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600">Über 100 Rezepte in verschiedenen Kategorien</p>
           </div>
 
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
             {recipeCategories.map((category, i) => (
-              <div key={i} className="bg-gradient-to-br from-gray-50 to-white border-2 border-gray-100 rounded-2xl p-6 text-center hover:border-orange-200 hover:shadow-lg transition-all cursor-pointer transform hover:scale-105">
-                <div className="text-4xl mb-3">{category.icon}</div>
-                <div className="font-bold text-gray-900 mb-1">{category.name}</div>
-                <div className="text-sm text-gray-600">{category.count} Rezepte</div>
+              <div key={i} className="bg-gradient-to-br from-gray-50 to-white border-2 border-gray-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center hover:border-orange-200 hover:shadow-lg transition-all cursor-pointer transform hover:scale-105">
+                <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">{category.icon}</div>
+                <div className="font-bold text-sm sm:text-base text-gray-900 mb-1">{category.name}</div>
+                <div className="text-xs sm:text-sm text-gray-600">{category.count} Rezepte</div>
               </div>
             ))}
           </div>
@@ -526,21 +548,21 @@ export default function WeCookLanding() {
       </section>
 
       {/* Features Section with Wireframe-Inspired Design */}
-      <section id="features" className="py-20 px-6 bg-gray-50">
+      <section id="features" className="py-12 sm:py-20 px-4 sm:px-6 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Warum WeCook?</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <div className="text-center mb-8 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-gray-900">Warum WeCook?</h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
               Die erste App, die speziell für gemeinsames Kochen entwickelt wurde
             </p>
           </div>
 
           {/* Wireframe-Inspired App Screenshot Section */}
-          <div className="mb-16 bg-white rounded-3xl shadow-2xl overflow-hidden border-2 border-gray-100">
+          <div className="mb-8 sm:mb-16 bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border-2 border-gray-100">
             <div className="grid md:grid-cols-2 gap-0">
               {/* Left: Recipe Match Screen */}
-              <div className="bg-gradient-to-br from-orange-50 to-red-50 p-8">
-                <div className="bg-white rounded-2xl shadow-lg p-6">
+              <div className="bg-gradient-to-br from-orange-50 to-red-50 p-4 sm:p-6 md:p-8">
+                <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
@@ -583,8 +605,8 @@ export default function WeCookLanding() {
               </div>
 
               {/* Right: Cooking Instructions Screen */}
-              <div className="bg-gradient-to-br from-red-50 to-orange-50 p-8">
-                <div className="bg-white rounded-2xl shadow-lg p-6">
+              <div className="bg-gradient-to-br from-red-50 to-orange-50 p-4 sm:p-6 md:p-8">
+                <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <h3 className="font-bold text-gray-900">Pasta Carbonara</h3>
@@ -686,12 +708,12 @@ export default function WeCookLanding() {
                 bgColor: "bg-blue-50"
               }
             ].map((feature, i) => (
-              <div key={i} className={`${feature.bgColor} rounded-2xl p-8 border border-gray-100 hover:shadow-lg transition-shadow`}>
-                <div className={`bg-gradient-to-br ${feature.color} rounded-2xl w-16 h-16 flex items-center justify-center mb-6 shadow-lg`}>
-                  <feature.icon className="w-8 h-8 text-white" />
+              <div key={i} className={`${feature.bgColor} rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gray-100 hover:shadow-lg transition-shadow`}>
+                <div className={`bg-gradient-to-br ${feature.color} rounded-xl sm:rounded-2xl w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-6 shadow-lg`}>
+                  <feature.icon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
+                <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900">{feature.title}</h3>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{feature.desc}</p>
               </div>
             ))}
           </div>
@@ -699,23 +721,23 @@ export default function WeCookLanding() {
       </section>
 
       {/* People Cooking Together - Featured Section */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
             {/* Large Photo - People Prominent */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl order-2 md:order-1">
               <img 
                 src={stockPhotos[1]} 
                 alt="Family cooking together"
-                className="w-full h-[500px] object-cover"
+                className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-orange-600/30 to-transparent"></div>
             </div>
             
             {/* Content */}
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Für die ganze Familie</h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            <div className="order-1 md:order-2">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-gray-900">Für die ganze Familie</h2>
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed">
                 WeCook macht gemeinsames Kochen zum Erlebnis für alle. Egal ob Paare, Familien oder Freunde - 
                 unsere KI sorgt dafür, dass jeder die perfekte Aufgabe bekommt.
               </p>
@@ -748,14 +770,14 @@ export default function WeCookLanding() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-20 px-6 bg-gray-50">
+      <section id="how-it-works" className="py-12 sm:py-20 px-4 sm:px-6 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">So funktioniert's</h2>
-            <p className="text-xl text-gray-600">Vier einfache Schritte zum perfekten Kocherlebnis</p>
+          <div className="text-center mb-8 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-gray-900">So funktioniert's</h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600">Vier einfache Schritte zum perfekten Kocherlebnis</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
               { 
                 step: 1, 
@@ -787,15 +809,15 @@ export default function WeCookLanding() {
               }
             ].map((item) => (
               <div key={item.step} className="relative">
-                <div className="bg-white border-2 border-gray-100 rounded-2xl p-8 hover:border-orange-200 transition-all h-full shadow-sm hover:shadow-lg">
-                  <div className={`absolute -top-6 -left-6 bg-gradient-to-r ${item.color} w-16 h-16 rounded-full flex items-center justify-center font-bold text-2xl text-white shadow-xl z-10`}>
+                <div className="bg-white border-2 border-gray-100 rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:border-orange-200 transition-all h-full shadow-sm hover:shadow-lg">
+                  <div className={`absolute -top-4 sm:-top-6 -left-4 sm:-left-6 bg-gradient-to-r ${item.color} w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-bold text-xl sm:text-2xl text-white shadow-xl z-10`}>
                     {item.step}
                   </div>
-                  <div className={`bg-gradient-to-br ${item.color} bg-opacity-10 rounded-2xl w-20 h-20 flex items-center justify-center mb-6 mt-4`}>
-                    <item.icon className="w-10 h-10 text-gray-700" />
+                  <div className={`bg-gradient-to-br ${item.color} bg-opacity-10 rounded-xl sm:rounded-2xl w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-4 sm:mb-6 mt-2 sm:mt-4`}>
+                    <item.icon className="w-8 h-8 sm:w-10 sm:h-10 text-gray-700" />
                   </div>
-                  <h3 className="font-bold text-xl mb-3 text-gray-900">{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+                  <h3 className="font-bold text-lg sm:text-xl mb-2 sm:mb-3 text-gray-900">{item.title}</h3>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -804,13 +826,13 @@ export default function WeCookLanding() {
       </section>
 
       {/* Another People Section - Roommates */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
             {/* Content */}
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Perfekt für Mitbewohner</h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            <div className="order-2 md:order-1">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-gray-900">Perfekt für Mitbewohner</h2>
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed">
                 Keine Diskussionen mehr über "Was sollen wir kochen?". WeCook hilft euch, 
                 schnell gemeinsame Favoriten zu finden und effizient zusammen zu kochen.
               </p>
@@ -840,11 +862,11 @@ export default function WeCookLanding() {
             </div>
 
             {/* Large Photo - People Prominent */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl order-1 md:order-2">
               <img 
                 src={stockPhotos[2]} 
                 alt="Roommates eating together"
-                className="w-full h-[500px] object-cover"
+                className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-red-600/30 to-transparent"></div>
             </div>
@@ -853,16 +875,16 @@ export default function WeCookLanding() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 px-6 bg-gradient-to-br from-orange-50 to-red-50">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-gradient-to-br from-orange-50 to-red-50">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Was unsere Nutzer sagen</h2>
-            <p className="text-xl text-gray-600">Echte Erfahrungen von echten Menschen</p>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-gray-900">Was unsere Nutzer sagen</h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600">Echte Erfahrungen von echten Menschen</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {testimonials.map((testimonial, i) => (
-              <div key={i} className="bg-white border-2 border-gray-100 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+              <div key={i} className="bg-white border-2 border-gray-100 rounded-xl sm:rounded-2xl p-6 sm:p-8 hover:shadow-lg transition-shadow">
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, j) => (
                     <Star key={j} className="w-5 h-5 fill-amber-400 text-amber-400" />
@@ -884,17 +906,17 @@ export default function WeCookLanding() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 px-6 bg-white">
+      <section id="pricing" className="py-12 sm:py-20 px-4 sm:px-6 bg-white">
         <div className="container mx-auto max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Einfache Preise</h2>
-            <p className="text-xl text-gray-600">Starte noch heute mit dem gemeinsamen Kochen</p>
+          <div className="text-center mb-8 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-gray-900">Einfache Preise</h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600">Starte noch heute mit dem gemeinsamen Kochen</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 shadow-sm">
-              <h3 className="text-2xl font-bold mb-2 text-gray-900">Free</h3>
-              <div className="text-5xl font-bold mb-6 text-gray-900">€0<span className="text-lg text-gray-500">/Monat</span></div>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+            <div className="bg-white border-2 border-gray-200 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-sm">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-gray-900">Free</h3>
+              <div className="text-4xl sm:text-5xl font-bold mb-4 sm:mb-6 text-gray-900">€0<span className="text-base sm:text-lg text-gray-500">/Monat</span></div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-gray-400 mt-1 flex-shrink-0" />
@@ -914,12 +936,12 @@ export default function WeCookLanding() {
               </button>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-500 to-red-500 border-2 border-orange-400 rounded-2xl p-8 relative shadow-xl transform scale-105">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white text-orange-600 px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
+            <div className="bg-gradient-to-br from-orange-500 to-red-500 border-2 border-orange-400 rounded-xl sm:rounded-2xl p-6 sm:p-8 relative shadow-xl sm:transform sm:scale-105">
+              <div className="absolute -top-3 sm:-top-4 left-1/2 -translate-x-1/2 bg-white text-orange-600 px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
                 BELIEBT
               </div>
-              <h3 className="text-2xl font-bold mb-2 text-white">Premium</h3>
-              <div className="text-5xl font-bold mb-6 text-white">€9.99<span className="text-lg text-orange-100">/Monat</span></div>
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-white">Premium</h3>
+              <div className="text-4xl sm:text-5xl font-bold mb-4 sm:mb-6 text-white">€9.99<span className="text-base sm:text-lg text-orange-100">/Monat</span></div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-white mt-1 flex-shrink-0" />
@@ -947,9 +969,9 @@ export default function WeCookLanding() {
               </button>
             </div>
 
-            <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 shadow-sm">
-              <h3 className="text-2xl font-bold mb-2 text-gray-900">Family & Friends</h3>
-              <div className="text-5xl font-bold mb-6 text-gray-900">€19.99<span className="text-lg text-gray-500">/Monat</span></div>
+            <div className="bg-white border-2 border-gray-200 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-sm">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-gray-900">Family & Friends</h3>
+              <div className="text-4xl sm:text-5xl font-bold mb-4 sm:mb-6 text-gray-900">€19.99<span className="text-base sm:text-lg text-gray-500">/Monat</span></div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-orange-500 mt-1 flex-shrink-0" />
@@ -977,63 +999,63 @@ export default function WeCookLanding() {
       </section>
 
       {/* Email Waitlist */}
-      <section className="py-20 px-6 bg-gradient-to-r from-orange-500 via-red-500 to-orange-500">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-gradient-to-r from-orange-500 via-red-500 to-orange-500">
         <div className="container mx-auto max-w-3xl text-center">
-          <Award className="w-16 h-16 text-white mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">Sei einer der Ersten!</h2>
-          <p className="text-xl text-orange-100 mb-8">
+          <Award className="w-12 h-12 sm:w-16 sm:h-16 text-white mx-auto mb-4 sm:mb-6" />
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-white">Sei einer der Ersten!</h2>
+          <p className="text-base sm:text-lg md:text-xl text-orange-100 mb-6 sm:mb-8">
             Melde dich für die Waitlist an und erhalte exklusiven Zugang bei Launch
           </p>
-          <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md mx-auto">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Deine E-Mail-Adresse"
-              className="flex-1 px-6 py-4 rounded-full border-0 focus:ring-2 focus:ring-white text-gray-900"
+              className="flex-1 px-4 sm:px-6 py-3 sm:py-4 rounded-full border-0 focus:ring-2 focus:ring-white text-gray-900 text-sm sm:text-base"
               required
             />
             <button
               type="submit"
-              className="bg-white text-orange-600 px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
+              className="bg-white text-orange-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
             >
-              <Mail className="w-5 h-5" />
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
               Anmelden
             </button>
           </form>
-          <div className="flex items-center justify-center gap-6 mt-8 text-orange-100">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-6 sm:mt-8 text-orange-100">
             <div className="flex items-center gap-2">
-              <Shield className="w-5 h-5" />
-              <span className="text-sm">Sicher & geschützt</span>
+              <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="text-xs sm:text-sm">Sicher & geschützt</span>
             </div>
             <div className="flex items-center gap-2">
-              <Lock className="w-5 h-5" />
-              <span className="text-sm">Kein Spam</span>
+              <Lock className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="text-xs sm:text-sm">Kein Spam</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-6 bg-gray-50">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-gray-50">
         <div className="container mx-auto max-w-3xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Häufig gestellte Fragen</h2>
-            <p className="text-xl text-gray-600">Alles, was du über WeCook wissen musst</p>
+          <div className="text-center mb-8 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-gray-900">Häufig gestellte Fragen</h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600">Alles, was du über WeCook wissen musst</p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {faqs.map((faq, i) => (
               <div key={i} className="bg-white border-2 border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                  className="w-full p-4 sm:p-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-semibold text-lg pr-4 text-gray-900">{faq.q}</span>
+                  <span className="font-semibold text-base sm:text-lg pr-4 text-gray-900">{faq.q}</span>
                   {openFaq === i ? <Minus className="w-5 h-5 text-orange-600 flex-shrink-0" /> : <Plus className="w-5 h-5 text-orange-600 flex-shrink-0" />}
                 </button>
                 {openFaq === i && (
-                  <div className="px-6 pb-6 text-gray-600 leading-relaxed">
+                  <div className="px-4 sm:px-6 pb-4 sm:pb-6 text-sm sm:text-base text-gray-600 leading-relaxed">
                     {faq.a}
                   </div>
                 )}
@@ -1044,17 +1066,17 @@ export default function WeCookLanding() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-12 sm:py-20 px-4 sm:px-6 bg-white">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Bereit, gemeinsam zu kochen?</h2>
-          <p className="text-xl text-gray-600 mb-8">Starte noch heute und verwandle gemeinsames Kochen in ein unvergessliches Erlebnis</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-2 shadow-lg">
-              <Apple className="w-6 h-6" />
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-gray-900">Bereit, gemeinsam zu kochen?</h2>
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8">Starte noch heute und verwandle gemeinsames Kochen in ein unvergessliches Erlebnis</p>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+            <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-2 shadow-lg">
+              <Apple className="w-5 h-5 sm:w-6 sm:h-6" />
               Für iOS herunterladen
             </button>
-            <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-2 shadow-lg">
-              <Smartphone className="w-6 h-6" />
+            <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-2 shadow-lg">
+              <Smartphone className="w-5 h-5 sm:w-6 sm:h-6" />
               Für Android herunterladen
             </button>
           </div>
@@ -1062,23 +1084,23 @@ export default function WeCookLanding() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 bg-gray-900 text-gray-300">
+      <footer className="py-8 sm:py-12 px-4 sm:px-6 bg-gray-900 text-gray-300">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-br from-orange-500 to-red-500 p-2 rounded-xl">
-                <ChefHat className="w-6 h-6 text-white" />
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="bg-gradient-to-br from-orange-500 to-red-500 p-1.5 sm:p-2 rounded-xl">
+                <ChefHat className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+              <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
                 WeCook
               </span>
             </div>
-            <div className="text-gray-400 text-sm text-center">
+            <div className="text-gray-400 text-xs sm:text-sm text-center">
               © 2025 WeCook. Alle Rechte vorbehalten.
               <br />
               <span className="text-orange-400 font-medium">Einfach. Gemeinsam. Kochen.</span>
             </div>
-            <button className="text-orange-400 hover:text-orange-300 transition-colors font-semibold">
+            <button className="text-orange-400 hover:text-orange-300 transition-colors font-semibold text-sm sm:text-base">
               Kontakt
             </button>
           </div>
