@@ -12,9 +12,9 @@ export default function WeCookLanding() {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
   const stockPhotos = [
-    '/stock_photos/medium-shot-couple-preparing-food-together.jpg',
-    '/stock_photos/medium-shot-family-cooking-delicious-pizza.jpg',
-    '/stock_photos/medium-shot-roommates-eating-together.jpg'
+    `${import.meta.env.BASE_URL}stock_photos/medium-shot-couple-preparing-food-together.jpg`,
+    `${import.meta.env.BASE_URL}stock_photos/medium-shot-family-cooking-delicious-pizza.jpg`,
+    `${import.meta.env.BASE_URL}stock_photos/medium-shot-roommates-eating-together.jpg`
   ];
 
   // Optimized scroll handler with throttling
